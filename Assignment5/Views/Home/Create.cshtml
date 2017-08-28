@@ -1,0 +1,87 @@
+﻿@model Assignment5.Models.EmpVM
+
+@{
+    ViewBag.Title = "Create";
+}
+
+
+
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    <h4 style="text-align:center;margin-top:30px">Employee Portal</h4>
+    <div class="form-horizontal ">
+        
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group" style="margin-left:240px">
+            @Html.LabelFor(model => model.Employee.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.Employee.Name, new { @class = "form-control" } )
+                @Html.ValidationMessageFor(model => model.Employee.Name, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group" style="margin-left:240px">
+            @Html.LabelFor(model => model.Employee.Email, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.Employee.Email,  new { @class = "form-control" } )
+                @Html.ValidationMessageFor(model => model.Employee.Email, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group" style="margin-left:240px">
+            @Html.LabelFor(model => model.Employee.Phone, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.Employee.Phone,  new { @class = "form-control" } )
+                @Html.ValidationMessageFor(model => model.Employee.Phone, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group" style="margin-left:240px">
+            @Html.LabelFor(model => model.Employee.MaritalStatus, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.CheckBoxFor(model => model.Employee.MaritalStatus, "Married")
+                @Html.Label("Married", "Married") &nbsp;
+               
+            </div>
+        </div>
+        <div class="form-group" style="margin-left:240px">
+            @Html.LabelFor(m => m.Employee.StateId, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(m => m.Employee.StateId, new SelectList(Model.State, "StateId", "StateName"), "Select Your State", new { @onchange = "FillCity()", @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.Employee.StateId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group" style="margin-left:240px">
+            @Html.LabelFor(m => m.Employee.CtyId, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(m => m.Employee.CtyId, new SelectList(Model.City, "CtyId", "CtyName"), "Select Your City", new {  @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.Employee.CtyId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+      
+
+
+        <div class="form-group" style="margin-left:250px">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="reset" value="Reset" class="btn btn-primary" />&nbsp;
+                <input type="submit" value="Add Employee" class="btn btn-warning" />
+                
+
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+
+<script src="~/Scripts/jquery-1.7.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
+
